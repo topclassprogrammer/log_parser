@@ -20,3 +20,11 @@ def test_get_column_count(column_name: str, dict_lines_list: list[dict]):
     list_ = get_column_count(column_name, dict_lines_list)
     assert isinstance(list_, list)
     assert isinstance(list_[0]["total"], int)
+
+
+def test_get_avg_response_time(dict_lines_list: list[dict],
+                               url_count_list: list[dict]):
+    list_ = get_avg_response_time(dict_lines_list, url_count_list)
+    assert isinstance(list_, list)
+    assert not hasattr(list_[0], "sum_response_time")
+    assert isinstance(list_[0]["avg_response_time"], float)
