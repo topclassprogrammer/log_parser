@@ -71,3 +71,10 @@ def get_dates(date: str, dict_lines_list: list[dict]) -> list[dict] | None:
         if log_date.startswith(date):
             dict_list.append(x)
     return dict_list
+
+
+def save_report(filename: str, dict_lines_list: list[dict]) -> None:
+    if not filename:
+        return None
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(tabulate(dict_lines_list, headers="keys", showindex=True))
