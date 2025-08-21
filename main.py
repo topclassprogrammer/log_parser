@@ -110,7 +110,7 @@ def main() -> None:
     user_agent_count = get_column_count("http_user_agent", dict_lines_list)
     show_table(avg_response_time)
     show_table(dates)
-    show_table(user_agent_count)
+    # show_table(user_agent_count)
     save_report(args.report, avg_response_time)
 
 
