@@ -50,7 +50,8 @@ def get_column_count(column_name: str, dict_lines_list: list[dict]) \
         except KeyError as e:
             print(f"Column {e} not found")
             sys.exit()
-    list_ = [{column_name: k, "total": v} for k, v in dict_.items()]
+    list_ = [{column_name: k, "total": v} if column_name != "url" else
+             {"handler": k, "total": v} for k, v in dict_.items()]
     return list_
 
 
@@ -59,7 +60,7 @@ def get_avg_response_time(dict_lines_list: list[dict],
     for i in dict_lines_list:
         time = i["response_time"]
         for indx, j in enumerate(url_count_list):
-            if i["url"] == j["url"]:
+            if i["url"] == j["handler"]:
                 if url_count_list[indx].get("sum_response_time"):
                     url_count_list[indx]["sum_response_time"] += time
                 else:
