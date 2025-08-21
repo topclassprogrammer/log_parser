@@ -34,9 +34,9 @@ def test_get_dates(date: str, dict_lines_list: dict[list]):
     list_ = get_dates(date, dict_lines_list)
     assert isinstance(list_, list)
     assert isinstance(list_[0]["@timestamp"], str)
-    r = re.match(r"\d{4}-\d{2}-\d{2}", date)
+    reg_exp = re.match(r"\d{4}-\d{2}-\d{2}", date)
     try:
-        r = r[0]
+        reg_exp = reg_exp[0]
         assert True
     except TypeError:
         assert False
