@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 
 from tabulate import tabulate
 
@@ -24,6 +25,7 @@ def get_dict_lines_list(args: argparse.Namespace) -> list[dict]:
         except FileNotFoundError:
             print(f"File {filename.strip(".\\")} not found " 
                   f"in the current directory.")
+            sys.exit()
     return dict_lines_list
 
 
@@ -40,7 +42,7 @@ def get_column_count(column_name: str, dict_lines_list: list[dict]) \
                 dict_[x[column_name]] = 1
         except KeyError as e:
             print(f"Column {e} not found")
-            return None
+            sys.exit()
     list_ = [{column_name: k, "total": v} for k, v in dict_.items()]
     return list_
 
@@ -67,7 +69,11 @@ def get_dates(date: str, dict_lines_list: list[dict]) -> list[dict] | None:
         return None
     dict_list = []
     for x in dict_lines_list:
-        log_date = x["@timestamp"]
+        try:
+            log_date = x["@timestamp"]
+        except KeyError as e:
+            print(f"Column {e} not found")
+            sys.exit()
         if log_date.startswith(date):
             dict_list.append(x)
     return dict_list
