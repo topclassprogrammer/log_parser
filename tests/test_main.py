@@ -40,3 +40,13 @@ def test_get_dates(date: str, dict_lines_list: dict[list]):
         assert True
     except TypeError:
         assert False
+
+
+def test_save_report(filename: str, dict_lines_list: list[dict]):
+    save_report(filename, dict_lines_list)
+    with open(filename, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+        if lines[1].startswith("--"):
+            assert True
+        else:
+            assert False
