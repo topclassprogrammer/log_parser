@@ -32,3 +32,7 @@ def dict_lines_list() -> list[dict]:
 def url_count_list() -> list[dict]:
     return [{"url": "/api/context/...", "total": 21}]
 
+
+@pytest.fixture
+def date() -> str:
+    return "2025-06-22T13:57:32+00:00"
