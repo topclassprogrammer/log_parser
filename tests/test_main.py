@@ -28,3 +28,15 @@ def test_get_avg_response_time(dict_lines_list: list[dict],
     assert isinstance(list_, list)
     assert not hasattr(list_[0], "sum_response_time")
     assert isinstance(list_[0]["avg_response_time"], float)
+
+
+def test_get_dates(date: str, dict_lines_list: dict[list]):
+    list_ = get_dates(date, dict_lines_list)
+    assert isinstance(list_, list)
+    assert isinstance(list_[0]["@timestamp"], str)
+    r = re.match(r"\d{4}-\d{2}-\d{2}", date)
+    try:
+        r = r[0]
+        assert True
+    except TypeError:
+        assert False
