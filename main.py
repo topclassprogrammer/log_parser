@@ -82,3 +82,20 @@ def save_report(filename: str, dict_lines_list: list[dict]) -> None:
 
 def show_table(list_dicts: list[dict]) -> None:
     print(tabulate(list_dicts, headers="keys", showindex=True))
+
+
+def main() -> None:
+    args = get_parsed_args()
+    dict_lines_list = get_dict_lines_list(args)
+    url_count = get_column_count("url", dict_lines_list)
+    user_agent_count = get_column_count("http_user_agent", dict_lines_list)
+    avg_response_time = get_avg_response_time(dict_lines_list, url_count)
+    dates = get_dates(args.date, dict_lines_list)
+    show_table(avg_response_time)
+    show_table(user_agent_count)
+    show_table(dates)
+    save_report(args.report, avg_response_time)
+
+
+if __name__ == "__main__":
+    main()
