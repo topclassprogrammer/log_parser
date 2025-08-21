@@ -26,3 +26,9 @@ def dict_lines_list() -> list[dict]:
             "http_user_agent": "...",
         }
     ]
+
+
+@pytest.fixture
+def url_count_list() -> list[dict]:
+    return [{"url": "/api/context/...", "total": 21}]
+
