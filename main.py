@@ -78,3 +78,7 @@ def save_report(filename: str, dict_lines_list: list[dict]) -> None:
         return None
     with open(filename, "w", encoding="utf-8") as f:
         f.write(tabulate(dict_lines_list, headers="keys", showindex=True))
+
+
+def show_table(list_dicts: list[dict]) -> None:
+    print(tabulate(list_dicts, headers="keys", showindex=True))
