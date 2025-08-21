@@ -12,3 +12,17 @@ def args() -> argparse.Namespace:
 @pytest.fixture
 def column_name() -> str:
     return "url"
+
+
+@pytest.fixture
+def dict_lines_list() -> list[dict]:
+    return [
+        {
+            "@timestamp": "2025-06-22T13:57:32+00:00",
+            "status": 200,
+            "url": "/api/context/...",
+            "request_method": "GET",
+            "response_time": 0.024,
+            "http_user_agent": "...",
+        }
+    ]
