@@ -14,3 +14,9 @@ def test_get_dict_lines_list(args: argparse.Namespace):
         for line in f.readlines():
             dict_line = json.loads(line)
             assert isinstance(dict_line, dict)
+
+
+def test_get_column_count(column_name: str, dict_lines_list: list[dict]):
+    list_ = get_column_count(column_name, dict_lines_list)
+    assert isinstance(list_, list)
+    assert isinstance(list_[0]["total"], int)
