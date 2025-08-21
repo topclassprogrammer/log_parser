@@ -1,0 +1,2 @@
+[run]
+omit=average.log,tests\__init__.py,tests\conftest.py,tests\test_main.py
