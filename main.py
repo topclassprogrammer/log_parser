@@ -60,3 +60,14 @@ def get_avg_response_time(dict_lines_list: list[dict],
     for x in url_count_list:
         x.pop("sum_response_time")
     return url_count_list
+
+
+def get_dates(date: str, dict_lines_list: list[dict]) -> list[dict] | None:
+    if not date:
+        return None
+    dict_list = []
+    for x in dict_lines_list:
+        log_date = x["@timestamp"]
+        if log_date.startswith(date):
+            dict_list.append(x)
+    return dict_list
