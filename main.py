@@ -1,5 +1,6 @@
 import argparse
 import json
+import re
 import sys
 
 from tabulate import tabulate
@@ -73,6 +74,10 @@ def get_avg_response_time(dict_lines_list: list[dict],
 def get_dates(date: str, dict_lines_list: list[dict]) -> list[dict] | None:
     if not date:
         return None
+    reg_exp = re.fullmatch(r"\d{4}-\d{2}-\d{2}", date)
+    if not reg_exp:
+        print("Incorrect date format. You must use the following format: YYYY-MM-DD")
+        sys.exit()
     dict_list = []
     for x in dict_lines_list:
         try:
