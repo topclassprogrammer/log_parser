@@ -10,8 +10,14 @@ def get_parsed_args() -> argparse.Namespace:
     parser.add_argument("--file", nargs="*")
     parser.add_argument("--report")
     parser.add_argument("--date")
-    args = parser.parse_args()
-    return args
+    try:
+        args = parser.parse_args()
+    except SystemExit:
+        print("Unknown argument provided. Make sure you provide argument(s): "
+              "--file, --report, --date")
+        sys.exit()
+    else:
+        return args
 
 
 def get_dict_lines_list(args: argparse.Namespace) -> list[dict]:
