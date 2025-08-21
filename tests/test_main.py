@@ -50,3 +50,16 @@ def test_save_report(filename: str, dict_lines_list: list[dict]):
             assert True
         else:
             assert False
+
+
+def test_main(filename: str):
+    try:
+        main()
+    except SystemExit:
+        pass
+    with open(filename, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    if "@timestamp" in lines[0]:
+        assert True
+    else:
+        assert False
