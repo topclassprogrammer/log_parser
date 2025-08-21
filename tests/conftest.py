@@ -36,3 +36,8 @@ def url_count_list() -> list[dict]:
 @pytest.fixture
 def date() -> str:
     return "2025-06-22T13:57:32+00:00"
+
+
+@pytest.fixture
+def filename() -> str:
+    return "average"
